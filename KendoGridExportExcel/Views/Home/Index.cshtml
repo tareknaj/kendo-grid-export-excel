@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@(Html.Kendo().Grid<Table>()
+    .Name("grid")
+    .Sortable()
+    .Filterable()
+    .Pageable()
+    .Columns(columns =>
+    {
+        columns.Bound(c => c.Id);
+        columns.Bound(c => c.Name);
+    })
+    .ToolBar(toolbar =>
+    {
+        toolbar.Template(
+            @<text>
+                @Html.Kendo().Button().Name("grid-export").HtmlAttributes(new { type = "button", data_url = @Url.Action("Export") }).Content("Export").Events(ev => ev.Click("exportGrid"))
+            </text>);
+    })
+    .DataSource(dataSource => dataSource
+    .Ajax()
+    .Read(read => read.Action("Read", "Home"))))
+
+<script>
+    function exportGrid() {
+        var toolbar = $(this.element);
+        var gridSelector = toolbar.closest(".k-grid");
+        var grid = $(gridSelector).data("kendoGrid");
+        var url = toolbar.data("url");
+
+        var requestObject = (new kendo.data.transports["aspnetmvc-server"]({ prefix: "" }))
+            .options.parameterMap({
+                page: grid.dataSource.page(),
+                sort: grid.dataSource.sort(),
+                filter: grid.dataSource.filter()
+            });
+
+        url = url + "?" + $.param({
+            "page": requestObject.page || '~',
+            "sort": requestObject.sort || '~',
+            "pageSize": grid.dataSource.pageSize(),
+            "filter": requestObject.filter || '~',
+        });
+        window.open(url, '_blank');
+    }
+</script>
