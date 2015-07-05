@@ -49,7 +49,7 @@
     </Reference>
     <Reference Include="Kendo.Mvc, Version=2015.2.624.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Kendo.Mvc.dll</HintPath>
+      <HintPath>lib\Kendo.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NPOI">
@@ -125,6 +125,7 @@
     <Content Include="Content\kendo\Silver\sprite_kpi.png" />
     <Content Include="Content\kendo\Silver\sprite_kpi_2x.png" />
     <Content Include="Global.asax" />
+    <Content Include="lib\Kendo.Mvc.dll" />
     <Content Include="Scripts\kendo\jquery.min.js" />
     <Content Include="Scripts\kendo\kendo.all.min.js" />
     <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js" />
@@ -191,7 +192,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
